@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Visualizzazione Aule</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <table border="1" class="mx-1" th:if="${aule != null && aule.size() > 0}">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Edificio</th>
+                <th>Numero Posti</th>
+            </tr>
+            <tr th:each="aula: ${aule}">
+                <td th:text="${aula.id}"></td>
+                <td th:text="${aula.nome}"></td>
+                <td th:text="${aula.edificio}"></td>
+                <td th:text="${aula.numeroPosti}"></td>
+            </tr>
+        </table>
+        <p th:if="${aule == null || aule.size() == 0}">Non e&agrave; presente alcuna aula!</p>
+    </body>
+</html>

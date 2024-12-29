@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Registrazione Utente</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<font color="black" size="5px" th:if="${aule != null && aule.size() > 0}">Inserisci negli appositi campi i
+			dati dell'utente</font>
+		<form th:if="${aule != null && aule.size() > 0}" th:action="@{/registra-utente}" th:object="${user}" method="post">
+			<div class="form-group">
+				<label>Aula</label>
+				<select th:field="*{idAula}">
+					<option th:each="aula: ${aule}" th:value="${aula.id}" th:utext="${aula.nome}"></option>
+				</select>
+			</div>
+
+			<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
+				Nome utente errato
+			</div>
+			<div class="form-group">
+				<label>Nome:&nbsp;</label>
+				<input type="text" th:field="*{nome}">
+			</div>
+
+			<div th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">
+				Cognome utente errato
+			</div>
+			<div class="form-group">
+				<label>Cognome:&nbsp;</label>
+				<input type="text" th:field="*{cognome}">
+			</div>
+
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+				Username utente errata
+			</div>
+			<div class="form-group">
+				<label>Username:&nbsp;</label>
+				<input type="text" th:field="*{username}">
+			</div>
+
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+				Password utente errata
+			</div>
+			<div class="form-group">
+				<label>Password:&nbsp;</label>
+				<input type="password" th:field="*{password}">
+			</div>
+
+			<div th:if="${#fields.hasErrors('eta')}" th:errors="*{eta}">
+				Et&agrave; utente errata
+			</div>
+			<div class="form-group">
+				<label>Et&agrave;:&nbsp;</label>
+				<input type="number" min="19" th:field="*{eta}">
+			</div>
+
+			<div th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}">
+				Data di nascita utente errata
+			</div>
+			<div class="form-group">
+				<label>Data di nascita:&nbsp;</label>
+				<input type="date" th:field="*{dataDiNascita}">
+			</div>
+
+			<p><input type="submit" value="Registra"/></p>
+		</form>
+		<p th:if="${aule == null || aule.size() == 0}">Non &egrave; possibile associare alcun studente in quanto non
+			&egrave; stata ancora registrata alcuna aula!!</p>
+	</body>
+</html>

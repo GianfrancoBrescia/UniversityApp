@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Visualizzazione Studenti</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <table border="1" class="mx-1" th:if="${users != null && users.size() > 0}">
+            <tr>
+                <th>Id</th>
+                <th>IdAula</th>
+                <th>Username</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Et&agrave;</th>
+                <th>Data di nascita</th>
+            </tr>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.aula.nome}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.nome}"></td>
+                <td th:text="${user.cognome}"></td>
+                <td th:text="${user.eta}"></td>
+                <td th:text="${user.dataDiNascita}"></td>
+            </tr>
+        </table>
+        <p th:if="${users == null || users.size() == 0}">Non e&agrave; presente alcuno studente!</p>
+    </body>
+</html>
